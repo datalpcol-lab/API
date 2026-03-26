@@ -17,8 +17,8 @@ _dptos = {}
 
 # ── Fuentes DIVIPOLA oficial (datos.gov.co) ────────────────────────────────
 FUENTES = [
-    "https://www.datos.gov.co/resource/vafm-j2df.json?$limit=1200&$order=c_digo_dane_del_municipio",
-    "https://www.datos.gov.co/resource/gdxc-w37w.json?$limit=1200&$order=c_digo_dane_del_municipio",
+    "https://www.datos.gov.co/resource/vafm-j2df.json?$limit=1200",
+    "https://www.datos.gov.co/resource/gdxc-w37w.json?$limit=1200",
 ]
 
 COORDENADAS_FALLBACK = {
