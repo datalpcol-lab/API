@@ -1,48 +1,112 @@
 # 🇨🇴 Colombia Municipios API
 
-API REST para validar, normalizar y consultar municipios de Colombia con códigos DANE oficiales.
+> Validate, normalize and query all **1,121 Colombian municipalities** with official DANE codes, departments and coordinates. No database required.
 
-## ✨ Características
+**[🔗 Live API on RapidAPI](https://rapidapi.com/TU_LINK_AQUI)** · **[📖 Docs](https://api-zdqs.onrender.com/docs)**
 
-- **Búsqueda fuzzy** — maneja tildes, mayúsculas, variaciones de escritura
-- **Validación** — confirma si un texto es un municipio oficial de Colombia
-- **Códigos DANE** — datos oficiales con código, departamento y coordenadas
-- **Sin base de datos** — datos embebidos, cero dependencias externas
+---
+
+## ✨ Features
+
+- **Fuzzy search** — handles accents, uppercase, spelling variations (`bogota` = `Bogotá`)
+- **Official validation** — confirms if a string is a real Colombian municipality
+- **DANE codes** — official government codes (DIVIPOLA) for all municipalities
+- **Departments** — full department name and code included
+- **Coordinates** — latitude and longitude for every municipality
+- **No database** — in-memory dataset, zero cold-start latency on queries
+- **1,121 municipalities · 33 departments** — full national coverage
+
+---
 
 ## 🚀 Endpoints
 
-| Método | Endpoint | Descripción |
+| Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/departamentos` | Lista todos los departamentos |
-| GET | `/municipios` | Lista municipios (filtrable por departamento) |
-| GET | `/municipios/buscar?q=cali` | Búsqueda fuzzy por nombre |
-| GET | `/municipios/validar?municipio=bogota` | Valida si es municipio oficial |
-| GET | `/municipios/11001` | Obtiene municipio por código DANE |
+| GET | `/departamentos` | List all 33 departments |
+| GET | `/municipios` | List municipalities (filterable by department) |
+| GET | `/municipios/buscar?q=cali` | Fuzzy search by name |
+| GET | `/municipios/validar?municipio=bogota` | Validate if official municipality |
+| GET | `/municipios/{codigo_dane}` | Get municipality by DANE code |
 
+---
 
-## 🖥️ Correr localmente
+## 📋 Response Example
+
+```json
+GET /municipios/11001
+
+{
+  "codigo_dane": "11001",
+  "municipio": "BOGOTÁ, D.C.",
+  "codigo_dpto": "11",
+  "departamento": "BOGOTÁ, D.C.",
+  "lat": 4.710989,
+  "lng": -74.072090
+}
+```
+
+---
+
+## 💡 Use Cases
+
+- 📦 **Logistics & e-commerce** — validate shipping destinations in Colombia
+- 📝 **Registration forms** — autocomplete and validate city fields
+- 🏦 **Fintech / KYC** — verify user location data against official records
+- 🗺️ **Geo apps** — get coordinates for any Colombian municipality
+- 🏛️ **Govtech** — integrate official DANE codes into public sector apps
+
+---
+
+## 📦 Quick Start
+
+```bash
+# Search — handles accents and case insensitive
+GET /municipios/buscar?q=bogota
+GET /municipios/buscar?q=medellín
+
+# Validate a municipality from a form input
+GET /municipios/validar?municipio=cartagena+de+indias
+
+# Filter all municipalities by department
+GET /municipios?departamento=VALLE+DEL+CAUCA
+
+# Lookup by official DANE code
+GET /municipios/76001   # Cali
+GET /municipios/05001   # Medellín
+GET /municipios/11001   # Bogotá
+```
+
+---
+
+## 🖥️ Run Locally
 
 ```bash
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-Abre http://localhost:8000/docs para ver la documentación interactiva.
+Open http://localhost:8000/docs for interactive Swagger documentation.
 
-## 📋 Ejemplos de uso
+---
 
-```bash
-# Buscar municipio con tilde o sin tilde
-GET /municipios/buscar?q=bogota
-GET /municipios/buscar?q=medellín
+## 📊 Data Source
 
-# Validar municipio desde un formulario
-GET /municipios/validar?municipio=cartagena+de+indias
+Data sourced from **DIVIPOLA** — the official Colombian municipality and territory registry maintained by DANE (Departamento Administrativo Nacional de Estadística). Updated automatically on startup.
 
-# Filtrar por departamento
-GET /municipios?departamento=VALLE+DEL+CAUCA
+- 🔗 [datos.gov.co](https://www.datos.gov.co)
+- 🔗 [DANE DIVIPOLA](https://www.dane.gov.co/index.php/sistema-estadistico-nacional-sen/normas-y-estandares/nomenclaturas-y-clasificaciones/clasificaciones/divipola-codigos-municipios)
 
-# Obtener por código DANE
-GET /municipios/76001   # Cali
-GET /municipios/05001   # Medellín
-```
+---
+
+## 🛠️ Tech Stack
+
+- **FastAPI** — Python REST framework
+- **Uvicorn** — ASGI server
+- **httpx** — async HTTP client for data fetching
+- **Render** — cloud deployment
+
+---
+
+## 📄 License
+
+MIT License — free to use in personal and commercial projects.
