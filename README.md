@@ -19,14 +19,6 @@ API REST para validar, normalizar y consultar municipios de Colombia con código
 | GET | `/municipios/validar?municipio=bogota` | Valida si es municipio oficial |
 | GET | `/municipios/11001` | Obtiene municipio por código DANE |
 
-## 📦 Despliegue en Render (gratis)
-
-1. Sube este proyecto a un repositorio de GitHub
-2. Ve a [render.com](https://render.com) y crea una cuenta
-3. Click en **New > Web Service**
-4. Conecta tu repositorio
-5. Render detectará el `render.yaml` automáticamente
-6. ¡Listo! Tu API estará en `https://colombia-municipios-api.onrender.com`
 
 ## 🖥️ Correr localmente
 
@@ -54,18 +46,3 @@ GET /municipios?departamento=VALLE+DEL+CAUCA
 GET /municipios/76001   # Cali
 GET /municipios/05001   # Medellín
 ```
-
-## 📊 Publicar en RapidAPI
-
-1. Ve a [rapidapi.com/provider](https://rapidapi.com/provider)
-2. Crea una nueva API
-3. Ingresa la URL base de tu Render deployment
-4. Define los endpoints y parámetros
-5. Configura un plan Freemium (gratis hasta X llamadas/mes, pago después)
-6. Publica 🎉
-
-## 💰 Estrategia de monetización sugerida
-
-- **Free**: 100 requests/mes
-- **Basic** ($9.99/mes): 10,000 requests/mes
-- **Pro** ($29.99/mes): 100,000 requests/mes + soporte prioritario
