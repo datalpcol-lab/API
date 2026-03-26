@@ -159,6 +159,11 @@ app = FastAPI(
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 
+@app.get("/ping", tags=["Info"])
+def ping():
+    return {"status": "ok"}
+
+
 @app.get("/", tags=["Info"])
 def root():
     return {
@@ -166,7 +171,7 @@ def root():
         "version": "2.0.0",
         "municipios_cargados": len(MUNICIPIOS),
         "departamentos": len(_dptos),
-        "endpoints": ["/municipios", "/municipios/buscar", "/municipios/validar", "/municipios/{codigo_dane}", "/departamentos"]
+        "endpoints": ["/ping", "/municipios", "/municipios/buscar", "/municipios/validar", "/municipios/{codigo_dane}", "/departamentos"]
     }
 
 
